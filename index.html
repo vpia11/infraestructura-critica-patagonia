@@ -9,38 +9,68 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root { --primary:#005fb2; --secondary:#00264d; --light:#f5f5f7; --dark:#0d0d0d; --accent:#ffd700; }
-    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; font-family:Poppins, sans-serif; }
-    body { background:var(--light); color:var(--dark); }
-    header { position:fixed; top:0; width:100%; background:white; box-shadow:0 2px 4px rgba(0,0,0,.1); z-index:1000; }
-    .navbar { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:auto; padding:0.5rem 1rem; }
-    .navbar img { height:48px; }
-    .navbar ul { list-style:none; display:flex; gap:1rem; }
-    .navbar a { text-decoration:none; color:var(--dark); font-weight:600; }
-    .navbar a.active, .navbar a:hover { color:var(--primary); }
-    .hero { display:flex; justify-content:center; align-items:center; height:100vh; background:url('https://images.unsplash.com/photo-1533322484965-73c33901e2ac?auto=format&fit=crop&w=1350&q=80') center/cover; position:relative; }
-    .hero::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,.45); }
-    .hero-content { position:relative; text-align:center; color:white; max-width:800px; padding:1rem; }
-    .hero h1 { font-size:3rem; margin-bottom:1rem; text-shadow:0 3px 6px rgba(0,0,0,.3); }
-    .hero p { font-size:1.25rem; margin-bottom:2rem; }
-    .btn { background:var(--accent); color:var(--dark); padding:0.75rem 1.5rem; border:none; border-radius:4px; font-weight:600; cursor:pointer; transition:all .3s; }
-    .btn:hover { transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,.3); }
-    section { padding:6rem 1rem; max-width:1200px; margin:auto; }
-    section h2 { font-size:2rem; margin-bottom:1rem; text-align:center; color:var(--secondary); }
-    section p { margin-bottom:1rem; text-align:justify; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
-    .card { background:white; border-radius:8px; padding:1.5rem; box-shadow:0 2px 6px rgba(0,0,0,.1); transition:transform .3s; }
-    .card:hover { transform:translateY(-4px); }
-    #map iframe { width:100%; height:600px; border:none; border-radius:8px; }
-    footer { background:var(--secondary); color:white; text-align:center; padding:2rem 1rem; }
+    :root {
+      --primary:#005fb2;
+      --secondary:#00264d;
+      --light:#f5f5f7;
+      --dark:#0d0d0d;
+      --accent:#0073d6; /* botón azul */
+      --radius:30px;
+      --conclusion-bg:#2b2b31; /* gris oscuro para la sección final */
+    }
+    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;font-family:Poppins,sans-serif;}
+    body{background:var(--light);color:var(--dark);}
+
+    /* ---------- NAV ---------- */
+    header{position:fixed;top:0;width:100%;background:white;box-shadow:0 2px 4px rgba(0,0,0,.1);z-index:1000;}
+    .navbar{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:0.5rem 1rem;}
+    .navbar img{height:48px;}
+    .navbar ul{list-style:none;display:flex;gap:1rem;}
+    .navbar a{text-decoration:none;color:var(--dark);font-weight:600;transition:color .3s;}
+    .navbar a.active,.navbar a:hover{color:var(--primary);}
+
+    /* ---------- HERO ---------- */
+    .hero{display:flex;justify-content:center;align-items:center;height:100vh;background:url('hero.jpg') center/cover no-repeat;position:relative;}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);}
+    .hero-content{position:relative;text-align:center;color:white;max-width:900px;padding:1rem;}
+    .hero h1{font-size:3rem;margin-bottom:1rem;text-shadow:0 3px 6px rgba(0,0,0,.3);}
+    .hero p{font-size:1.25rem;margin-bottom:2.5rem;}
+
+    /* ---------- BUTTONS ---------- */
+    .btn,.btn-outline{display:inline-block;padding:0.8rem 2rem;border:none;border-radius:var(--radius);font-weight:600;cursor:pointer;transition:transform .3s,box-shadow .3s;font-size:1rem;letter-spacing:.3px;}
+    .btn{background:var(--accent);color:var(--light);box-shadow:0 4px 8px rgba(0,0,0,.25);}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,.35);}
+    .btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent);box-shadow:0 4px 8px rgba(0,0,0,.15);margin:0 .4rem;}
+    .btn-outline:hover{background:var(--accent);color:var(--light);}
+
+    /* ---------- SECTIONS ---------- */
+    section{padding:6rem 1rem;max-width:1200px;margin:auto;}
+    section h2{font-size:2rem;margin-bottom:1rem;text-align:center;color:var(--secondary);}
+    section p{margin-bottom:1rem;text-align:justify;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+    .card{background:white;border-radius:8px;padding:1.5rem;box-shadow:0 2px 6px rgba(0,0,0,.1);transition:transform .3s;}
+    .card:hover{transform:translateY(-4px);}
+    #map iframe{width:100%;height:600px;border:none;border-radius:8px;}
+
+    /* ---------- CONCLUSION SECTION ---------- */
+    #conclusiones{background:var(--conclusion-bg);color:#fefefe;position:relative;overflow:hidden;}
+    #conclusiones h2{color:#e1e1e1;}
+    #conclusiones::before{content:"";position:absolute;top:0;right:-60vw;width:100vw;height:100%;background:rgba(0,0,0,.2);transform:skewX(-12deg);} /* banda diagonal tipo Globant */
+    #conclusiones ul{list-style:disc;padding-left:1.5rem;margin-bottom:1rem;}
+
+    /* ---------- FOOTER ---------- */
+    footer{background:var(--secondary);color:white;text-align:center;padding:2rem 1rem;}
+
+    /* ---------- MOBILE NAV ---------- */
     @media(max-width:768px){
-      .navbar ul { flex-direction:column; position:absolute; top:100%; right:-300px; background:white; transition:right .3s; width:250px; padding:1rem; }
-      .navbar ul.show { right:0; }
-      .menu-toggle { display:block; font-size:1.5rem; cursor:pointer; }
+      .navbar ul{flex-direction:column;position:absolute;top:100%;right:-300px;background:white;transition:right .3s;width:250px;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,.1);} 
+      .navbar ul.show{right:0;}
+      .menu-toggle{display:block;font-size:1.5rem;cursor:pointer;}
     }
   </style>
 </head>
 <body>
+  <!-- NAVBAR -->
   <header>
     <nav class="navbar">
       <a href="#inicio"><img src="esgc.png" alt="Escudo ESGCFFAA"></a>
@@ -57,85 +87,38 @@
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-content">
       <h1>Infraestructura Crítica Patagonia</h1>
       <p>Análisis operacional de los nodos estratégicos en Chubut, Santa Cruz y Tierra del Fuego.</p>
       <a href="#acerca" class="btn">Explorar</a>
+      <div style="margin-top:1.2rem;">
+        <a href="#terrestre" class="btn-outline">Terrestre</a>
+        <a href="#maritima" class="btn-outline">Marítima</a>
+        <a href="#aerea" class="btn-outline">Aérea</a>
+      </div>
     </div>
   </section>
 
+  <!-- ACERCA -->
   <section id="acerca">
     <h2>Acerca del Trabajo</h2>
     <p>Este proyecto forma parte de la asignatura <strong>Logística Operativa</strong> de la <em>Escuela Superior de Guerra Conjunta de las Fuerzas Armadas</em>. Su objetivo es identificar, clasificar y evaluar la infraestructura crítica del extremo sur argentino y su relevancia para el planeamiento y sostenimiento de operaciones conjuntas.</p>
     <div class="grid">
-      <div class="card">
-        <h3>Objetivo</h3>
-        <p>Brindar un panorama claro y actualizado de los nodos terrestres, marítimos y aéreos capaces de apoyar despliegues militares en un entorno caracterizado por vastedad y baja densidad de infraestructura.</p>
-      </div>
-      <div class="card">
-        <h3>Alcance Geográfico</h3>
-        <p>Provincias de Chubut, Santa Cruz y Tierra del Fuego, incluyendo sus rutas, puertos, aeródromos y ductos de hidrocarburos.</p>
-      </div>
-      <div class="card">
-        <h3>Doctrina Aplicada</h3>
-        <p>Se utilizaron criterios de <em>Control de Daño Zonal (CDZ)</em> y <em>Seguridad en la Zona de Retaguardia (SZR)</em> para priorizar infraestructura según su valor y vulnerabilidad.</p>
-      </div>
+      <div class="card"><h3>Objetivo</h3><p>Brindar un panorama claro y actualizado de los nodos terrestres, marítimos y aéreos capaces de apoyar despliegues militares en un entorno caracterizado por vastedad y baja densidad de infraestructura.</p></div>
+      <div class="card"><h3>Alcance Geográfico</h3><p>Provincias de Chubut, Santa Cruz y Tierra del Fuego, incluyendo sus rutas, puertos, aeródromos y ductos de hidrocarburos.</p></div>
+      <div class="card"><h3>Doctrina Aplicada</h3><p>Se utilizaron criterios de <em>Control de Daño Zonal (CDZ)</em> y <em>Seguridad en la Zona de Retaguardia (SZR)</em> para priorizar infraestructura según su valor y vulnerabilidad.</p></div>
     </div>
   </section>
 
+  <!-- TERRESTRE -->
   <section id="terrestre">
     <h2>Infraestructura Terrestre</h2>
     <p>La <strong>Ruta Nacional 3</strong> se identifica como el principal corredor logístico longitudinal, aunque presenta limitaciones de redundancia. Las rutas provinciales y secundarias requieren mejoras para soportar operaciones sostenidas. Los ferrocarriles ofrecen capacidad limitada y los ductos de hidrocarburos, pese a su valor estratégico, son altamente vulnerables a interrupciones.</p>
   </section>
 
+  <!-- MARÍTIMA -->
   <section id="maritima">
     <h2>Infraestructura Marítima</h2>
-    <p>Se destacan los puertos de <strong>Comodoro Rivadavia, Puerto Deseado, Río Gallegos y Ushuaia</strong>. Aunque con capacidad intermodal, enfrentan restricciones logísticas, técnicas y meteorológicas, y la mayoría carece de infraestructura de almacenamiento profundo y defensa activa.</p>
-  </section>
-
-  <section id="aerea">
-    <h2>Infraestructura Aérea</h2>
-    <p>Las bases de <strong>Comodoro Rivadavia, Río Gallegos y Río Grande</strong> son fundamentales para la proyección aérea. Varios aeródromos secundarios necesitan mejoras significativas en pistas, iluminación y servicios conexos. La cobertura sanitaria militar es limitada, requiriendo convenios con hospitales civiles.</p>
-  </section>
-
-  <section id="mapa">
-    <h2>Mapa Interactivo</h2>
-    <div id="map">
-      <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1gLgsxj1jHuB1KcIN22Kdq2cIBDU0sC8" loading="lazy"></iframe>
-    </div>
-  </section>
-
-  <section id="conclusiones">
-    <h2>Conclusiones</h2>
-    <p>El análisis consolidado de la infraestructura crítica en el extremo sur proporciona una base de planeamiento robusta para el nivel operacional conjunto. La priorización propuesta garantiza el uso eficiente de recursos y la protección de nodos esenciales para el sostenimiento de futuras operaciones.</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Escuela Superior de Guerra Conjunta de las Fuerzas Armadas. Proyecto académico sin fines comerciales.</p>
-  </footer>
-
-  <script>
-    const toggle = document.getElementById('toggle');
-    const navLinks = document.getElementById('nav-links');
-    toggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.navbar a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(sec => {
-        const secTop = sec.offsetTop - 80;
-        if (pageYOffset >= secTop) { current = sec.getAttribute('id'); }
-      });
-      navItems.forEach(a => {
-        a.classList.remove('active');
-        if (a.getAttribute('href') === '#' + current) { a.classList.add('active'); }
-      });
-    });
-  </script>
-</body>
-</html>
+    <p>Se destacan los puertos de <strong>Comodoro Rivadavia, Puerto Deseado, Río Gal
